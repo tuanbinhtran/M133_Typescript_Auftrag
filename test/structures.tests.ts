@@ -31,9 +31,7 @@ describe("Data structures", () => {
           const artists = ['Rich Brian', 'Darude', 'Jackson Wang', 'G-Dragon', 'Hans']
           const expected = 5;
 
-          artists.forEach(artist => {
-              queue.enqueue(artist);
-          });
+          artists.forEach(artist => queue.enqueue(artist));
           
           const result = queue.size();
 
