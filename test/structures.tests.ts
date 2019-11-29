@@ -108,6 +108,18 @@ describe("Data structures", () => {
             expect(result).to.equal(expected);
         });
 
+        it('can poll artists in correct order', () => {
+            const artists = ["Hans", "Darude", "Jackson Wang", "G-Dragon"];
+
+            artists.forEach(artist => queue.enqueue(artist));
+            var result = [];
+
+            while (!queue.isEmpty())
+                result.push(queue.poll());
+
+            expect(result).to.deep.equal(artists);
+        });
+
         it('peeked artist is not equal the polled artist', () => {
             const artists = ["Darude", "Hans", "Jackson Wang", "G-Dragon"];
             const expected = 'Darude';
