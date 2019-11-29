@@ -81,17 +81,10 @@ describe("Data structures", () => {
         });
 
         it("can peek next value from queue with three artists", () => {
-            const artists = [
-                "G-Dragon",
-                "Darude",
-                "Jackson Wang",
-                "Rich Brian",
-                "Hans"
-            ];
+            const artists = ["G-Dragon", "Darude", "Jackson Wang", "Rich Brian", "Hans"];
             const expected = 'G-Dragon';
 
             artists.forEach(artist => queue.enqueue(artist));
-
             const result = queue.peek();
 
             expect(result).to.equal(expected);
@@ -106,19 +99,24 @@ describe("Data structures", () => {
         });
 
         it('can poll artist from queue with 4 artists', () => {
-            const artists = [
-              "Hans",
-              "Darude",
-              "Jackson Wang",
-              "G-Dragon"
-            ];
+            const artists = ["Hans", "Darude", "Jackson Wang", "G-Dragon"];
             const expected = 'Hans';
 
             artists.forEach(artist => queue.enqueue(artist));
-
             const result = queue.poll();
 
             expect(result).to.equal(expected);
+        });
+
+        it('peeked artist is not equal the polled artist', () => {
+            const artists = ["Darude", "Hans", "Jackson Wang", "G-Dragon"];
+            const expected = 'Darude';
+
+            artists.forEach(artist => queue.enqueue(artist));
+            queue.poll();
+            const result = queue.peek();
+
+            expect(result).to.not.equal(expected);
         });
     })
 
