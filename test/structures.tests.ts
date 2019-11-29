@@ -44,6 +44,14 @@ describe("Data structures", () => {
 
             expect(result).to.equal(expected);
         });
+
+        it('can peek next value from empty queue', () => {
+            const expected = undefined;
+
+            const result = queue.peek();
+
+            expect(result).to.equal(expected);
+        });
     })
 
     // describe("Factory", () => {

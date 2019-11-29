@@ -8,8 +8,12 @@ export class Queue implements IDataScructure {
         return this.queue.length;
     }
 
-    public enqueue(value: string): void {
+    public enqueue(value: any): void {
         this.queue.push(value);
+    }
+
+    public peek(): any {
+        return this.queue[0];
     }
 
     public isEmpty(): boolean {
