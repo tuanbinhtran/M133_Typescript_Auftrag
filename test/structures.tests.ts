@@ -80,7 +80,7 @@ describe("Data structures", () => {
             expect(result).to.equal(artist); 
         });
 
-        it("can peek next value from queue with artist three artists", () => {
+        it("can peek next value from queue with three artists", () => {
             const artists = [
                 "G-Dragon",
                 "Darude",
