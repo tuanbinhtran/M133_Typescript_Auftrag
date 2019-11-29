@@ -17,14 +17,15 @@ describe("Data structures", () => {
             expect(result).to.equal(expected);
         });
 
-        // it.skip('can enqueue artist and has size of 1', () => {
-        //     const artist = 'Rich Brian';
+        it('can enqueue artist and has size of 1', () => {
+            const artist = 'Rich Brian';
+            const expected = 1;
 
+            queue.enqueue(artist);
+            const result = queue.size();
 
-        //     const result = queue.isEmpty();
-
-        //     expect(result).to.equal(expected);
-        // });
+            expect(result).to.equal(expected);
+        });
     })
 
     // describe("Factory", () => {
