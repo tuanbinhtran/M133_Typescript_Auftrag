@@ -1,6 +1,6 @@
-import { IDataScructure } from "./IDataStructure";
+import { IDataStructure } from "./IDataStructure";
 
-export class Queue implements IDataScructure {
+export class Queue implements IDataStructure {
 
     private queue = [];
 

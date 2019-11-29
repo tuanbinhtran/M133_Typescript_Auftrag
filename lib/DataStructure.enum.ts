@@ -1,0 +1,4 @@
+enum DataStructure {
+	FIFO,
+	LIFO
+}
