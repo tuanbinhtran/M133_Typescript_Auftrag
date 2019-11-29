@@ -13,6 +13,6 @@ export class Queue implements IDataScructure {
     }
 
     public isEmpty(): boolean {
-        return true;
+        return (this.size() == 0) ? true : false;
     }
 }

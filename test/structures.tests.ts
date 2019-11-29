@@ -34,6 +34,16 @@ describe("Data structures", () => {
 
             expect(result).to.equal(expected);
         });
+
+        it("is not empty", () => {
+            const artist = "Rich Brian";
+            const expected = false;
+
+            queue.enqueue(artist);
+            const result = queue.isEmpty();
+
+            expect(result).to.equal(expected);
+        });
     })
 
     // describe("Factory", () => {
