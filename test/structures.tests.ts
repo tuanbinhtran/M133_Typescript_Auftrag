@@ -35,7 +35,7 @@ describe("Data structures", () => {
             expect(result).to.equal(expected);
         });
 
-        it("is not empty", () => {
+        it('is not empty', () => {
             const artist = "Rich Brian";
             const expected = false;
 
