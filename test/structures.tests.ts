@@ -28,7 +28,13 @@ describe("Data structures", () => {
         });
 
         it('can enqueue 5 artist and queue has size of 5', () => {
-          const artists = ['Rich Brian', 'Darude', 'Jackson Wang', 'G-Dragon', 'Hans']
+          const artists = [
+              'Rich Brian',
+              'Darude',
+              'Jackson Wang',
+              'G-Dragon',
+              'Hans'
+            ];
           const expected = 5;
 
           artists.forEach(artist => queue.enqueue(artist));
@@ -72,6 +78,23 @@ describe("Data structures", () => {
             const result = queue.peek();
 
             expect(result).to.equal(artist); 
+        });
+
+        it("can peek next value from queue with artist three artists", () => {
+            const artists = [
+                "G-Dragon",
+                "Darude",
+                "Jackson Wang",
+                "Rich Brian",
+                "Hans"
+            ];
+            const expected = 'G-Dragon';
+
+            artists.forEach(artist => queue.enqueue(artist));
+
+            const result = queue.peek();
+
+            expect(result).to.equal(expected);
         });
     })
 
