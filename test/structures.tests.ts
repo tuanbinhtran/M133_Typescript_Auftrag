@@ -63,7 +63,7 @@ describe("Data structures", () => {
             expect(result).to.equal(expected);
         });
 
-        it('can peek next value from empty queue', () => {
+        it('can peek from empty queue', () => {
             const expected = undefined;
 
             const result = queue.peek();
@@ -71,7 +71,7 @@ describe("Data structures", () => {
             expect(result).to.equal(expected);
         });
 
-        it('can peek next value from queue with artist Rich Brian', () => {
+        it('can peek from queue with artist', () => {
             const artist = 'Rich Brian';
 
             queue.enqueue(artist);
@@ -80,7 +80,7 @@ describe("Data structures", () => {
             expect(result).to.equal(artist); 
         });
 
-        it("can peek next value from queue with three artists", () => {
+        it("can peek from queue with 3 artists", () => {
             const artists = ["G-Dragon", "Darude", "Jackson Wang", "Rich Brian", "Hans"];
             const expected = 'G-Dragon';
 
@@ -90,7 +90,7 @@ describe("Data structures", () => {
             expect(result).to.equal(expected);
         });
 
-        it('can poll next value from queue with empty queue', () => {
+        it('can poll from empty queue', () => {
             const expected = undefined;
 
             const result = queue.poll();
