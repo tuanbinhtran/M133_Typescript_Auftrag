@@ -104,6 +104,22 @@ describe("Data structures", () => {
 
             expect(result).to.equal(expected);
         });
+
+        it('can poll artist from queue with 4 artists', () => {
+            const artists = [
+              "Hans",
+              "Darude",
+              "Jackson Wang",
+              "G-Dragon"
+            ];
+            const expected = 'Hans';
+
+            artists.forEach(artist => queue.enqueue(artist));
+
+            const result = queue.poll();
+
+            expect(result).to.equal(expected);
+        });
     })
 
     // describe("Factory", () => {
