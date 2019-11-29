@@ -16,6 +16,10 @@ export class Queue implements IDataScructure {
         return this.queue[0];
     }
 
+    public poll(): any {
+        return undefined;
+    }
+
     public isEmpty(): boolean {
         return (this.size() == 0) ? true : false;
     }

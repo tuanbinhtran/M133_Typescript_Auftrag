@@ -96,6 +96,14 @@ describe("Data structures", () => {
 
             expect(result).to.equal(expected);
         });
+
+        it('can poll next value from queue with empty queue', () => {
+            const expected = undefined;
+
+            const result = queue.poll();
+
+            expect(result).to.equal(expected);
+        });
     })
 
     // describe("Factory", () => {
