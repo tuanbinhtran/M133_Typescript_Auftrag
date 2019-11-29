@@ -26,6 +26,14 @@ describe("Data structures", () => {
 
             expect(result).to.equal(expected);
         });
+
+        it('is empty', () => {
+            const expected = true;
+
+            const result = queue.isEmpty();
+
+            expect(result).to.equal(expected);
+        });
     })
 
     // describe("Factory", () => {

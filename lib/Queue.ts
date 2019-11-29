@@ -11,4 +11,8 @@ export class Queue implements IDataScructure {
     public enqueue(value: string): void {
         this.queue.push(value);
     }
+
+    public isEmpty(): boolean {
+        return true;
+    }
 }
