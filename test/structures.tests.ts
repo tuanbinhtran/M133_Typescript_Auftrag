@@ -3,6 +3,7 @@ import { Queue } from "../lib/Queue";
 import { DataStructureFactory } from "../lib/DataStructureFactory";
 import { DataStructure } from "../lib/DataStructure.enum";
 import { Stack } from "../lib/Stack";
+import * as mocha from "mocha";
 
 describe("Data structures", () => {
     describe("Queue", () => {
