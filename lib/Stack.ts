@@ -5,20 +5,19 @@ export class Stack implements IDataStructure {
 	private stack = [];
 
 	enqueue(value: any): void {
-		throw new Error("Method not implemented.");
+		this.stack.push(value);
 	}
 	peek() {
-		throw new Error("Method not implemented.");
+		return this.stack[(this.size() - 1)];
 	}
 	poll() {
-		throw new Error("Method not implemented.");
+		return this.stack.pop();
 	}
 	isEmpty(): boolean {
-		throw new Error("Method not implemented.");
+		return (!this.size()) ? true : false;
 	}
 	
 	size(): number {
-		throw new Error("Method not implemented.");
+		return this.stack.length;
 	}
-
 }

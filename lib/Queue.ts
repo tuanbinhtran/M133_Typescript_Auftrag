@@ -14,6 +14,7 @@ export class Queue implements IDataStructure {
 
     public peek(): any {
         return this.queue[0];
+        // return this.queue // ganze queue?
     }
 
     public poll(): any {
@@ -21,6 +22,6 @@ export class Queue implements IDataStructure {
     }
 
     public isEmpty(): boolean {
-        return (this.size() == 0) ? true : false;
+        return (!this.size()) ? true : false;
     }
 }
