@@ -167,7 +167,6 @@ describe("Data structures", () => {
             artists.reverse();
             var result = [];
 
-
             while (!stack.isEmpty())
                 result.push(stack.poll());
 

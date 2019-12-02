@@ -1,6 +1,20 @@
 {
 	"compilerOptions": {
 		"target": "es6",
-		"outDir": "./dist"
-	}
+		"outDir": "./dist",
+		"module": "commonjs",
+		"esModuleInterop": true,
+		"typeRoots": [
+			"../node_modules/@types"
+		],
+		"allowSyntheticDefaultImports": true
+	},
+	"exclude": [
+		"node_modules/",
+		"test"
+	],
+	"include": [
+		"lib",
+		"./app.ts"
+	]
 }
