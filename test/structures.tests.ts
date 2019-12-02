@@ -1,5 +1,7 @@
 import { expect } from "chai";
 import { Queue } from "../lib/Queue";
+import { DataStructureFactory } from "../lib/DataStructureFactory";
+import { DataStructure } from "../lib/DataStructure.enum";
 
 describe("Data structures", () => {
     describe("Queue", () => {
@@ -132,11 +134,17 @@ describe("Data structures", () => {
         });
     })
 
-    // describe("Factory", () => {
-    //     it("can create Queue", () => {
-    //         const structureType = DataStructures.Queue;
-    //         const result = DataStructureFactory.create(structureType);
-    //         expect(result).to.be.an.instanceOf(Queue);
-    //     })
-    // })
+    describe("Factory", () => {
+        var dataStructureFactory: DataStructureFactory;
+
+        beforeEach(() => {
+            dataStructureFactory = new DataStructureFactory();
+        });
+
+        it("can create Queue", () => {
+            const structureType = DataStructure.FIFO; // todo to => DataStructure.Queue
+            const result = dataStructureFactory.create(structureType);
+            expect(result).to.be.an.instanceOf(Queue);
+        })
+    })
 })

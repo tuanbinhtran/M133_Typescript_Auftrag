@@ -1,4 +1,4 @@
-enum DataStructure {
+export enum DataStructure {
 	FIFO,
 	LIFO
 }
