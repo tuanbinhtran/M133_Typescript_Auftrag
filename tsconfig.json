@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"target": "es5",
+		"target": "es6",
 		"outDir": "./dist",
 		"noImplicitAny": false,
 		"strict": true,
@@ -12,14 +12,19 @@
 		"typeRoots": [
 			"../node_modules/@types"
 		],
+		"baseUrl": "./src",
+		"paths": {
+			"~*": ["./*"]
+		}
 	},
 	"exclude": [
 		"node_modules/",
-		"test"
+		"test",
+		"dist/**/*"
 	],
 	"include": [
-		"lib",
+		"src/lib",
 		"./app.ts",
-		"views"
+		"src/views"
 	]
 }

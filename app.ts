@@ -1,27 +1,31 @@
 import express from 'express';
-import path from "path";
+import Bundler from 'parcel-bundler';
+import path from 'path';
 import ejs from 'ejs';
+
+const file = './src/views/index.html';
+const options: Bundler.ParcelOptions = {
+	cache: false,
+	bundleNodeModules: false,
+	target: 'node',
+	publicUrl: '/'
+}
 
 const app = express();
 const router = express.Router();
+const bundler = new Bundler(file, options);
 
+app.engine("html", ejs.renderFile);
+app.set("view engine", "html");
 
-app.set('/views', path.join(__dirname, 'views'));
-app.engine('html', ejs.renderFile);
-app.set('view engine', 'html');
-
-router.get('/', (req, res) => {
-	res.render("index");
+router.get("/", (req, res) => {
+  res.redirect('/index.html')
 });
-
-router.get('/index.html', (req, res) => {
-	res.render('index.html');
-});
-
 
 app.use(express.static(__dirname + "/lib"));
-app.use(express.static(__dirname + '/views'));
+app.use(express.static(__dirname + "/index.html"));
 app.use(router);
+app.use(bundler.middleware());
 app.listen(8080, () => {
 	console.log('App listening on port 8080');
 	console.log('http://localhost:8080');
