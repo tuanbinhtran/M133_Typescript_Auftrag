@@ -4,13 +4,10 @@ import { IDataStructure } from "../lib/IDataStructure";
 import { Queue } from "../lib/Queue";
 import { Stack } from "../lib/Stack";
 
-const options = [
-	{ text: 'Queue', value: DataStructure.FIFO },
-	{ text: 'Stack', value: DataStructure.LIFO }
-];
 
 
 const ddl = document.getElementById("ddl") as HTMLSelectElement;
+const input = document.getElementById('value') as HTMLInputElement;
 var selectedStructure: DataStructure;
 var structure: IDataStructure;
 var factory = new DataStructureFactory();
@@ -22,9 +19,15 @@ init();
 function init() {
 	setSelectionOptions();
 	setEventListeners();
+	onChange();
 }
 
 function setSelectionOptions() {
+	const options = [
+		{ text: 'Queue', value: DataStructure.FIFO.valueOf() },
+		{ text: 'Stack', value: DataStructure.LIFO.valueOf() }
+	];
+
 	options.forEach(option => {
 		var optionElement = document.createElement('option');
 
@@ -43,36 +46,39 @@ function setEventListeners() {
 }
 
 function add() {
-	console.log('ima add');
-	
+	if (input.value.trim() != '') {
+		console.log('add: ' + input.value);
+		structure.add(input.value.trim());
+	}
 }
 
 function peek() {
-	console.log('ima peek');
+	if (structure.isEmpty())
+		console.log(String(structure) + ' is empty');
+	else
+		console.log(structure.peek());
 }
 
 function poll() {
-	console.log('poll');
+	if (structure.isEmpty())
+		console.log(String(structure) + ' is empty');
+	else
+		console.log(structure.poll());
 }
 
 function onChange() {
-	if (selectedOption() == DataStructure.FIFO) {
+	if (selectedOption() === DataStructure.FIFO.toString())
 		structure = new Queue();
-	}
-	else {
+	else
 		structure = new Stack();
-	}
-	
-	console.log(selectedOption());
-	
-	console.log(structure);
-	
+
+	console.log('created structure: ' + JSON.stringify(structure));
+
 }
 
-function selectedOption(): DataStructure {
+function selectedOption(): string {
 	var value = ddl.options[ddl.selectedIndex].value;
-	
-	return DataStructure[value];
+	return value;
 }
 
 

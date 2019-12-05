@@ -6,9 +6,11 @@ import ejs from 'ejs';
 const file = './src/views/index.html';
 const options: Bundler.ParcelOptions = {
 	cache: false,
-	bundleNodeModules: false,
+	bundleNodeModules: true,
 	target: 'node',
-	publicUrl: '/'
+	publicUrl: '/',
+	sourceMaps: true,
+	watch: true
 }
 
 const app = express();
@@ -19,7 +21,7 @@ app.engine("html", ejs.renderFile);
 app.set("view engine", "html");
 
 router.get("/", (req, res) => {
-  res.redirect('/index.html')
+	res.redirect('/index.html')
 });
 
 app.use(express.static(__dirname + "/lib"));

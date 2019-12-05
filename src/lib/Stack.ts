@@ -4,7 +4,7 @@ export class Stack implements IDataStructure {
 
 	private stack = [];
 
-	enqueue(value: any): void {
+	add(value: any): void {
 		this.stack.push(value);
 	}
 	peek() {
@@ -16,7 +16,7 @@ export class Stack implements IDataStructure {
 	isEmpty(): boolean {
 		return (!this.size()) ? true : false;
 	}
-	
+
 	size(): number {
 		return this.stack.length;
 	}

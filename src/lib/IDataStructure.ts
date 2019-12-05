@@ -6,10 +6,10 @@ export interface IDataStructure {
     size(): number;
 
     /**
-     * Enqueues the value
+     * Adds the value
      * @param value to enqueue
      */
-    enqueue(value: any): void;
+    add(value: any): void;
 
     /**
      * Retuns the structure
