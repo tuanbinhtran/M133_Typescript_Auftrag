@@ -1,0 +1,89 @@
+* {
+	padding: 0;
+	margin: 0;
+	font-family: "Comic Sans MS", cursive, sans-serif
+}
+
+html {
+	height: 100vh;
+	width: 100vw;
+	overflow: hidden;
+}
+
+#actions {
+	display: flex;
+	position: sticky;
+	/* align-content: space-around; */
+	width: 100%;
+	height: 50px;
+	background: black;
+	align-items: center;
+}
+
+#actions > * {
+	background: black;
+	color: white;
+}
+
+input[type="text"] {
+	background: none;
+	border: none;
+	margin: 0 2.5px;
+	border-bottom: 2px solid rgba(255, 255, 255, 0.4) ;
+}
+
+input[type="text"]:required,
+input[type="text"]:invalid {
+	border: none;
+	border-bottom: 2px solid red;
+	outline: none;
+}
+
+input[type="button"] {
+	background: rgba(255, 255, 255, 0.2) !important;
+	padding: 10px;
+	margin: 0 2.5px;
+	display: block;
+	border: none;
+	border-radius: .2rem;
+	cursor: pointer;
+	/* height: 100%; */
+}
+
+input[type="button"]:Hover {
+	background: rgba(255, 255, 255, 0.4) !important;
+}
+
+select {
+	cursor: pointer;
+	outline: none;
+	border: none;
+	  box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.3);
+  border-radius: 3px;
+  margin: 0 2.5px;
+}
+
+select:hover {
+	background: rgba(255, 255, 255, 0.4) !important;
+}
+
+#messages > * {
+	font-family: "Consolas";
+}
+
+#messages {
+	overflow: scroll;
+	overflow-x: hidden;
+	height: 500px;
+	width: 80%;
+	background: black;
+	color: white;
+	border-radius: .4rem;
+
+	scrollbar-color: rgba(255, 255, 255, 0.4) black;
+	scrollbar-width: thin;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.4);
+}
