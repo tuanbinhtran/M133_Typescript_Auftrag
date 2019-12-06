@@ -8,6 +8,7 @@ import { Stack } from "../lib/Stack";
 
 const ddl = document.getElementById("ddl") as HTMLSelectElement;
 const input = document.getElementById('value') as HTMLInputElement;
+const messagesElement = document.getElementById('messages') as HTMLDivElement;
 var selectedStructure: DataStructure;
 var structure: IDataStructure;
 var factory = new DataStructureFactory();
@@ -42,43 +43,77 @@ function setEventListeners() {
 	document.getElementById("btnAdd").addEventListener("click", () => add());
     document.getElementById("btnPeek").addEventListener("click", () => peek());
 	document.getElementById("btnPoll").addEventListener("click", () => poll());
+	document.getElementById("btnReset").addEventListener("click", () => reset());
 	ddl.addEventListener("change", () => onChange());
 }
 
 function add() {
 	if (input.value.trim() != '') {
-		console.log('add: ' + input.value);
 		structure.add(input.value.trim());
+		notify(`➕ Added '${input.value}'`);
+	}
+	else {
+		notify('💩 Input is empty or invalid')
 	}
 }
 
 function peek() {
-	if (structure.isEmpty())
-		console.log(String(structure) + ' is empty');
-	else
-		console.log(structure.peek());
+	if (structure.isEmpty()) {
+		notify(`💩 ${String(structure)} is empty`);
+	}
+	else {
+		notify(`🔍 Peek: ${structure.peek()}`);
+	}
 }
 
 function poll() {
-	if (structure.isEmpty())
-		console.log(String(structure) + ' is empty');
+	if (structure.isEmpty()) {
+		notify(`💩 ${String(structure)} is empty`);
+	}
 	else
-		console.log(structure.poll());
+		notify(`🛒 Poll: ${structure.poll()}`);
+}
+
+function reset() {
+	resetMessageElement();
+
+	notify('♻ Resetting ...');
+	input.value = '';
+	onChange();
 }
 
 function onChange() {
-	if (selectedOption() === DataStructure.FIFO.toString())
+	if (selectedOption() === DataStructure.FIFO.toString()) {
 		structure = new Queue();
-	else
+		notify('🆕 Queue created');
+	}
+	else {
 		structure = new Stack();
-
-	console.log('created structure: ' + JSON.stringify(structure));
-
+		notify('🆕 Stack created');
+	}
 }
 
 function selectedOption(): string {
 	var value = ddl.options[ddl.selectedIndex].value;
 	return value;
+}
+
+function resetMessageElement(): void {
+	messagesElement.innerHTML = '';
+}
+
+function notify(message: string) {
+	var messageElement = document.createElement('p');
+	var time = new Date().toLocaleTimeString('en-US', {
+		hour12: false,
+		hour: 'numeric',
+		minute: 'numeric',
+		second: 'numeric'
+	});
+
+	messageElement.textContent = `${time} | ${message}`;
+	console.log(`${time} | ${message}`);
+	messagesElement.prepend(messageElement);
 }
 
 
