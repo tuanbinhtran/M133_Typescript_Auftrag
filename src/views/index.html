@@ -5,15 +5,18 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Document</title>
+	<link rel="stylesheet" href="./index.css">
 </head>
 <body>
-	<select id="ddl"></select>
-	<input id="value" type="text">
-	<input id="btnAdd" type="button" value="Add">
-	<input id="btnPeek" type="button" value="Peek">
-	<input id="btnPoll" type="button" value="Poll">
-	<input id="btnReset" type="button" value="Reset">
-
+	<div id="actions">
+		<select id="ddl"></select>
+		<input id="value" type="text" required>
+		<input id="btnAdd" type="button" value="Add">
+		<input id="btnPeek" type="button" value="Peek">
+		<input id="btnPoll" type="button" value="Poll">
+		<!-- <input id="ckbTranfserList" type="checkbox" title="Transfer List"> -->
+		<input id="btnReset" type="button" value="Reset">
+	</div>
 	<div id="messages"></div>
 
 	<script src="./index.ts"></script>

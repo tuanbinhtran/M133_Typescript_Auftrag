@@ -44,6 +44,7 @@ function setEventListeners() {
     document.getElementById("btnPeek").addEventListener("click", () => peek());
 	document.getElementById("btnPoll").addEventListener("click", () => poll());
 	document.getElementById("btnReset").addEventListener("click", () => reset());
+	input.addEventListener('keypress', (e) => inputOnKeyPress(e));
 	ddl.addEventListener("change", () => onChange());
 }
 
@@ -80,6 +81,11 @@ function reset() {
 	notify('♻ Resetting ...');
 	input.value = '';
 	onChange();
+}
+
+function inputOnKeyPress(e: KeyboardEvent): void {
+	if (e.key == 'Enter')
+		add();
 }
 
 function onChange() {
