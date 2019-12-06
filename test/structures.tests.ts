@@ -25,7 +25,7 @@ describe("Data structures", () => {
             const artist = 'Rich Brian';
             const expected = 1;
 
-            queue.enqueue(artist);
+            queue.add(artist);
             const result = queue.size();
 
             expect(result).to.equal(expected);
@@ -41,7 +41,7 @@ describe("Data structures", () => {
             ];
           const expected = 5;
 
-          artists.forEach(artist => queue.enqueue(artist));
+          artists.forEach(artist => queue.add(artist));
           
           const result = queue.size();
 
@@ -61,7 +61,7 @@ describe("Data structures", () => {
             const artist = "Rich Brian";
             const expected = false;
 
-            queue.enqueue(artist);
+            queue.add(artist);
             const result = queue.isEmpty();
 
             expect(result).to.equal(expected);
@@ -78,7 +78,7 @@ describe("Data structures", () => {
         it('can peek from queue with artist', () => {
             const artist = 'Rich Brian';
 
-            queue.enqueue(artist);
+            queue.add(artist);
             const result = queue.peek();
 
             expect(result).to.equal(artist); 
@@ -88,7 +88,7 @@ describe("Data structures", () => {
             const artists = ["G-Dragon", "Darude", "Jackson Wang", "Rich Brian", "Hans"];
             const expected = 'G-Dragon';
 
-            artists.forEach(artist => queue.enqueue(artist));
+            artists.forEach(artist => queue.add(artist));
             const result = queue.peek();
 
             expect(result).to.equal(expected);
@@ -106,7 +106,7 @@ describe("Data structures", () => {
             const artists = ["Hans", "Darude", "Jackson Wang", "G-Dragon"];
             const expected = 'Hans';
 
-            artists.forEach(artist => queue.enqueue(artist));
+            artists.forEach(artist => queue.add(artist));
             const result = queue.poll();
 
             expect(result).to.equal(expected);
@@ -115,7 +115,7 @@ describe("Data structures", () => {
         it('can poll artists in correct order', () => {
             const artists = ["Hans", "Darude", "Jackson Wang", "G-Dragon"];
 
-            artists.forEach(artist => queue.enqueue(artist));
+            artists.forEach(artist => queue.add(artist));
             var result = [];
 
             while (!queue.isEmpty())
@@ -128,7 +128,7 @@ describe("Data structures", () => {
             const artists = ["Darude", "Hans", "Jackson Wang", "G-Dragon"];
             const expected = 'Darude';
 
-            artists.forEach(artist => queue.enqueue(artist));
+            artists.forEach(artist => queue.add(artist));
             queue.poll();
             const result = queue.peek();
 
@@ -147,7 +147,7 @@ describe("Data structures", () => {
             const artists = ["Hans", "Darude", "Jackson Wang", "G-Dragon"];
             const expected = 'G-Dragon';
 
-            artists.forEach(artist => stack.enqueue(artist));
+            artists.forEach(artist => stack.add(artist));
             const result = stack.poll();
 
             expect(result).to.equal(expected);
@@ -164,7 +164,7 @@ describe("Data structures", () => {
         it('can poll artists in correct order', () => {
             const artists = ["Hans", "Darude", "Jackson Wang", "G-Dragon"];
 
-            artists.forEach(artist => stack.enqueue(artist));
+            artists.forEach(artist => stack.add(artist));
             artists.reverse();
             var result = [];
 
