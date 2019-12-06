@@ -3,6 +3,8 @@ import { DataStructure } from "../lib/DataStructure.enum";
 import { IDataStructure } from "../lib/IDataStructure";
 import { Queue } from "../lib/Queue";
 import { Stack } from "../lib/Stack";
+import { Http2ServerRequest } from "http2";
+import { request } from "http";
 
 
 
@@ -17,13 +19,13 @@ init();
 
 
 
-function init() {
+function init(): void {
 	setSelectionOptions();
 	setEventListeners();
 	onChange();
 }
 
-function setSelectionOptions() {
+function setSelectionOptions(): void {
 	const options = [
 		{ text: 'Queue', value: DataStructure.FIFO.valueOf() },
 		{ text: 'Stack', value: DataStructure.LIFO.valueOf() }
@@ -44,43 +46,52 @@ function setEventListeners() {
     document.getElementById("btnPeek").addEventListener("click", () => peek());
 	document.getElementById("btnPoll").addEventListener("click", () => poll());
 	document.getElementById("btnReset").addEventListener("click", () => reset());
+	document.getElementById("btnClear").addEventListener("click", () => clearMessages());
 	input.addEventListener('keypress', (e) => inputOnKeyPress(e));
 	ddl.addEventListener("change", () => onChange());
 }
 
-function add() {
+function add(): void {
 	if (input.value.trim() != '') {
 		structure.add(input.value.trim());
-		notify(`➕ Added '${input.value}'`);
+		output(`➕ Added '${input.value}'`);
 	}
 	else {
-		notify('💩 Input is empty or invalid')
+		output('💩 Input is empty or invalid')
 	}
 }
 
-function peek() {
-	if (structure.isEmpty()) {
-		notify(`💩 ${String(structure)} is empty`);
-	}
-	else {
-		notify(`🔍 Peek: ${structure.peek()}`);
-	}
-}
-
-function poll() {
-	if (structure.isEmpty()) {
-		notify(`💩 ${String(structure)} is empty`);
-	}
+function peek(): void {
+	if (structure.isEmpty())
+		output(`💩 ${String(structure)} is empty`);
 	else
-		notify(`🛒 Poll: ${structure.poll()}`);
+		output(`🔍 Peek: ${structure.peek()}`);
 }
 
-function reset() {
-	resetMessageElement();
+function poll(): void {
+	if (structure.isEmpty())
+		output(`💩 ${String(structure)} is empty`);
+	else
+		output(`🛒 Poll: ${structure.poll()}`);
+}
 
-	notify('♻ Resetting ...');
+function reset(): void {
+	output('♻ Resetting ...');
 	input.value = '';
 	onChange();
+}
+
+function clearMessages(): void {
+	messagesElement.innerHTML = '';
+	output('♻ ...');
+
+	fetch('https://meme-api.herokuapp.com/gimme')
+		.then((response) => response.json())
+		.then((data) => {
+			var imgElement = document.createElement('img');
+			imgElement.src = data.url;
+			messagesElement.prepend(imgElement);
+		});
 }
 
 function inputOnKeyPress(e: KeyboardEvent): void {
@@ -88,14 +99,14 @@ function inputOnKeyPress(e: KeyboardEvent): void {
 		add();
 }
 
-function onChange() {
+function onChange(): void {
 	if (selectedOption() === DataStructure.FIFO.toString()) {
 		structure = new Queue();
-		notify('🆕 Queue created');
+		output('🆕 Queue created');
 	}
 	else {
 		structure = new Stack();
-		notify('🆕 Stack created');
+		output('🆕 Stack created');
 	}
 }
 
@@ -104,11 +115,7 @@ function selectedOption(): string {
 	return value;
 }
 
-function resetMessageElement(): void {
-	messagesElement.innerHTML = '';
-}
-
-function notify(message: string) {
+function output(message: string) {
 	var messageElement = document.createElement('p');
 	var time = new Date().toLocaleTimeString('en-US', {
 		hour12: false,
