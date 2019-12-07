@@ -10,7 +10,8 @@ const options: Bundler.ParcelOptions = {
 	target: 'node',
 	publicUrl: '/',
 	sourceMaps: true,
-	watch: true
+	watch: true,
+	hmr: true
 }
 
 const app = express();
@@ -28,6 +29,7 @@ app.use(express.static(__dirname + "/lib"));
 app.use(express.static(__dirname + "/index.html"));
 app.use(router);
 app.use(bundler.middleware());
+
 app.listen(8080, () => {
 	console.log('App listening on port 8080');
 	console.log('http://localhost:8080');

@@ -3,10 +3,10 @@
 	margin: 0;
 
 	/* using best font */
-	font-family: "Comic Sans MS", cursive, sans-serif 
+	font-family: "Comic Sans MS"
 }
 
-html {
+html, body {
 	height: 100vh;
 	width: 100vw;
 	overflow: hidden;
@@ -14,30 +14,34 @@ html {
 	background-size: cover;
 }
 
-#actions {
+.image {
+	text-align: center;
+	cursor: pointer;
+}
+
+#action-bar {
 	display: flex;
 	position: sticky;
-	/* align-content: space-around; */
+	justify-content: center;
 	width: 100%;
 	height: 50px;
-	background: black;
-	align-items: center;
+	background: rgba(0, 0, 0, .85);
+	opacity: .9;
+	backdrop-filter: blur(2rem);
+	align-items: stretch;
 	box-shadow: 0 0 15px 0px rgba(0,0,0,0.5);
 }
 
-#actions > * {
-	background: black;
+#action-bar > * {
 	color: white;
 }
 
 input[type="text"] {
-	background: white !important;
+	background: rgba(255, 255, 255, 0.9);
 	color: black !important;
 	padding: 5px;
 	border: none;
-	margin: 0 2.5px;
-	border-radius: .2rem;
-	border-bottom: 2px solid rgba(255, 255, 255, 0.4) ;
+	border-radius: 0;
 }
 
 input[type="text"]:required,
@@ -48,71 +52,104 @@ input[type="text"]:invalid {
 }
 
 input[type="button"] {
-	background: rgba(255, 255, 255, 0.2) !important;
+	background: rgba(0, 0, 0, 0.5);
+	color: white;
+	text-transform: uppercase;
 	padding: 10px;
-	margin: 0 2.5px;
 	display: block;
 	border: none;
-	border-radius: .2rem;
+	border-radius: 0;
 	cursor: pointer;
-	/* height: 100%; */
 }
 
-input[type="button"]:Hover {
-	background: rgba(255, 255, 255, 0.4) !important;
+input[type="button"]:Hover,
+select:Hover,
+#messages > *:Hover,
+option:hover {
+	background: rgba(255, 255, 255, 0.1);
+}
+
+input[type="button"]:focus {
+	outline: none;
+	border-bottom: 2px white solid;
 }
 
 select {
-	background: rgba(255, 255, 255, 0.2) !important;
+	background: rgba(0, 0, 0, 0.2);
 	cursor: pointer;
 	outline: none;
 	border: none;
+	appearance: none;
 	box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.3);
-	border-radius: 3px;
-	margin: 0 2.5px;
+	/* border-radius: 3px; */
+	/* margin: 0 2.5px; */
 	padding: 5px;
 	width: 100px;
 }
 
-select:hover {
-	background: rgba(255, 255, 255, 0.4) !important;
+option {
+	background: black;
+	border-radius: .4rem;
+	border:none;
+	color: white;
 }
-
 
 .messages-container {
 	display: flex;
     align-items: center;
 	justify-content: center;
-	height: 500px;
-}
-
-#messages > * {
-	display: inline-block;
-	font-family: "Consolas";
+	height: 90%;
 }
 
 #messages {
 	display: flex;
+	width: 80%;
+	height: 80%;
 	flex-direction: column-reverse;
-	background: black;
+	backdrop-filter: blur(2rem);
+	opacity: .9;
+	background: rgba(0, 0, 0, .85);
 	color: white;
-	padding: 5px;
-	overflow: scroll;
+	padding: 7px;
+	overflow-y: scroll;
 	overflow-x: hidden;
-	width: 700px;
-	height: 400px;
-	/* border-radius: .4rem; */
+	box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.7);
 
-	box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.4);
-
-	/* scrollbar-color: rgba(255, 255, 255, 0.4) black;
-	scrollbar-width: thin; */
+	scrollbar-color: rgba(255, 255, 255, 0.4) rgba(255, 255, 255, .0);
+	scrollbar-width: thin;
+	scroll-behavior: smooth;
 }
 
-p:Hover {
-	background: rgba(0,0,0,0.3) !important;
+#messages > p {
+	width: 100%;
+	font-family: "Consolas";
+	padding: 1px;
+}
+
+#messages > * > img {
+	max-width: 50%;
+	height: auto;
+	margin: auto;
+}
+
+::-webkit-scrollbar {
+	width: 5px;
+	background-clip: border-box;
+}
+
+::-webkit-scrollbar-track {
+	background: none;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.4);
+	background: rgba(255, 255, 255, .4);
+	border-radius: 10px;
+	height: 50px;
+	border: 5px solid rgba(0, 0, 0, 0);
+}
+
+@supports (-moz-appearance:none) {
+    #messages {
+		flex-direction: column;
+	}
 }

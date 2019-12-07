@@ -5,6 +5,7 @@ import { Queue } from "../lib/Queue";
 import { Stack } from "../lib/Stack";
 import { Http2ServerRequest } from "http2";
 import { request } from "http";
+import { stringify } from "querystring";
 
 
 
@@ -46,7 +47,7 @@ function setEventListeners() {
     document.getElementById("btnPeek").addEventListener("click", () => peek());
 	document.getElementById("btnPoll").addEventListener("click", () => poll());
 	document.getElementById("btnReset").addEventListener("click", () => reset());
-	document.getElementById("btnClear").addEventListener("click", () => clearMessages());
+	document.getElementById("btnClear").addEventListener("click", () => clear());
 	input.addEventListener('keypress', (e) => inputOnKeyPress(e));
 	ddl.addEventListener("change", () => onChange());
 }
@@ -57,20 +58,20 @@ function add(): void {
 		output(`➕ Added '${input.value}'`);
 	}
 	else {
-		output('💩 Input is empty or invalid')
+		output('💩 Value is empty or invalid')
 	}
 }
 
 function peek(): void {
 	if (structure.isEmpty())
-		output(`💩 ${String(structure)} is empty`);
+		output(`💩 ${structure.constructor.name} is empty`);
 	else
 		output(`🔍 Peek: ${structure.peek()}`);
 }
 
 function poll(): void {
 	if (structure.isEmpty())
-		output(`💩 ${String(structure)} is empty`);
+		output(`💩 ${structure.constructor.name} is empty`);
 	else
 		output(`🛒 Poll: ${structure.poll()}`);
 }
@@ -81,17 +82,10 @@ function reset(): void {
 	onChange();
 }
 
-function clearMessages(): void {
+function clear(): void {
 	messagesElement.innerHTML = '';
 	output('♻ ...');
-
-	fetch('https://meme-api.herokuapp.com/gimme')
-		.then((response) => response.json())
-		.then((data) => {
-			var imgElement = document.createElement('img');
-			imgElement.src = data.url;
-			messagesElement.prepend(imgElement);
-		});
+	appendRandomMeme();
 }
 
 function inputOnKeyPress(e: KeyboardEvent): void {
@@ -127,6 +121,29 @@ function output(message: string) {
 	messageElement.textContent = `${time} | ${message}`;
 	console.log(`${time} | ${message}`);
 	messagesElement.prepend(messageElement);
+
+	scrollToBottom();
+}
+
+function appendRandomMeme() {
+	fetch('https://meme-api.herokuapp.com/gimme') // https://meme-api.herokuapp.com/gimme/ProgrammerHumor
+		.then((response) => response.json())
+		.then((data) => {
+			var img = document.createElement('img')
+			img.src = data.url;
+
+			var a = document.createElement('a');
+			a.className = 'image';
+			a.href = data.postLink;
+			a.target = '_blank';
+			a.appendChild(img);
+
+			messagesElement.prepend(a);
+		});
+}
+
+function scrollToBottom(): void {
+	messagesElement.scrollTop = messagesElement.scrollHeight;
 }
 
 

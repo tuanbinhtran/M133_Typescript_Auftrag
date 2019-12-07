@@ -8,9 +8,9 @@
 	<link rel="stylesheet" href="./index.css">
 </head>
 <body>
-	<div id="actions">
+	<div id="action-bar">
 		<select id="ddl"></select>
-		<input id="value" type="text" required>
+		<input id="value" type="text" placeholder="Value to add ..." required>
 		<input id="btnAdd" type="button" value="Add">
 		<input id="btnPeek" type="button" value="Peek">
 		<input id="btnPoll" type="button" value="Poll">
@@ -18,9 +18,9 @@
 		<input id="btnReset" type="button" value="Reset">
 		<input id="btnClear" type="button" value="🚽" title="Clear messages">
 	</div>
-	
+
 	<div class="messages-container">
-		<div id="messages"></div>
+			<div id="messages"></div>
 	</div>
 
 	<script src="./index.ts"></script>
